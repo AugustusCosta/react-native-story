@@ -9,7 +9,7 @@ import Avatar from "../../avatar/view/avatarView";
 export default class extends PureComponent {
   static propTypes = {
     storyItemStyle: PropTypes.object,
-    VideoPlayer: PropTypes.node
+    VideoPlayer: PropTypes.any
   };
 
   render() {

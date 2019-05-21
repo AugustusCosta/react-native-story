@@ -21,7 +21,7 @@ export default class Stories extends PureComponent {
     stories: PropTypes.array,
     storyItemStyle: PropTypes.object,
     storyViewStyle: PropTypes.object,
-    VideoPlayer: PropTypes.node
+    VideoPlayer: PropTypes.any
   };
 
   stories = [];

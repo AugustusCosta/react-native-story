@@ -18,7 +18,7 @@ class StoryListView extends Component {
     storyViewStyle: PropTypes.object,
     storyListViewStyle: PropTypes.object,
     keyExtractor: PropTypes.func,
-    VideoPlayer: PropTypes.node
+    VideoPlayer: PropTypes.any
   };
 
   static defaultProps = {
