@@ -2,6 +2,8 @@
 
 A react native component instagram stories forked and modified from: https://github.com/ue/react-native-story
 
+[![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/AugustusCosta/react-native-story/master/LICENSE)
+[ ![NPM version](http://img.shields.io/npm/v/react-native-story.svg?style=flat)](https://www.npmjs.com/package/react-native-story)
 
 ## Installation
 
