@@ -90,11 +90,9 @@ storyItemStyle: {
   container: {},
   image: {},
   video: {},
-  avatar: {
-    container: {},
-    avatar: {},
-    username: {}
-  },
+  avatarContainer: {},
+  avatar: {},
+  username: {},
   footer: {}
 } 
 

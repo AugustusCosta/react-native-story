@@ -29,11 +29,9 @@ class StoryListView extends Component {
       container: {},
       image: {},
       video: {},
-      avatar: {
-        container: {},
-        avatar: {},
-        username: {}
-      },
+      avatarContainer: {},
+      avatar: {},
+      username: {},
       footer: {}
     },
     storyListItemStyle: {
