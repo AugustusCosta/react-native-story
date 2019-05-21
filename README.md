@@ -76,22 +76,22 @@ const stories = [
 | pressedBorderColor   | string | true     | "#ebebeb"                    | Pressed border color                   |
 | footerComponent      | jsx    | true     | -                            | Bottom of the stories footer component |
 | storyItemStyle       | object | true     | {
-                                                container: {},
-                                                image: {},
-                                                video: {},
-                                                avatar: {
-                                                  container: {},
-                                                  avatar: {},
-                                                  username: {}
-                                                },
-                                                footer: {}
-                                              }                           | Style for StoryItem                    |
+  container: {},
+  image: {},
+  video: {},
+  avatar: {
+    container: {},
+    avatar: {},
+    username: {}
+  },
+  footer: {}
+}                                                                         | Style for StoryItem                    |
 | storyListItemStyle   | object | true     | {
-                                                container: {},
-                                                avatarWrapper: {},
-                                                avatar: {},
-                                                itemText: {}
-                                              }                           | Style for StoryListItem                |
+  container: {},
+  avatarWrapper: {},
+  avatar: {},
+  itemText: {}
+}                                                                         | Style for StoryListItem                |
 | storyViewStyle       | object | true     | {},                          | Style for Story View                   |
 | storyListViewStyle   | object | true     | {},                          | Style for Story List View Container    |
 | keyExtractor         | func   | true     | (item, index) => item.id,    | Key Extractor for FlatList             |

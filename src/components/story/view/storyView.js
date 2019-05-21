@@ -17,7 +17,8 @@ class StoryListView extends Component {
     storyListItemStyle: PropTypes.object,
     storyViewStyle: PropTypes.object,
     storyListViewStyle: PropTypes.object,
-    keyExtractor: PropTypes.func
+    keyExtractor: PropTypes.func,
+    VideoPlayler: PropTypes.node
   };
 
   static defaultProps = {
@@ -43,7 +44,8 @@ class StoryListView extends Component {
     },
     storyViewStyle: {},
     storyListViewStyle: {},
-    keyExtractor: (item, index) => item.id
+    keyExtractor: (item, index) => item.id,
+    VideoPlayler: <View />
   };
 
   constructor(props) {
@@ -84,7 +86,8 @@ class StoryListView extends Component {
       storyListItemStyle,
       storyViewStyle,
       storyListViewStyle,
-      keyExtractor
+      keyExtractor,
+      VideoPlayler
     } = this.props;
     const { isModalOpen, orderedStories, selectedStory } = this.state;
 
@@ -116,6 +119,7 @@ class StoryListView extends Component {
             stories={orderedStories}
             storyItemStyle={storyItemStyle}
             storyViewStyle={storyViewStyle}
+            VideoPlayler={VideoPlayler}
           />
         </Modal>
       </Fragment>

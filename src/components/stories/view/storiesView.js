@@ -20,7 +20,8 @@ export default class Stories extends PureComponent {
   static propTypes = {
     stories: PropTypes.array,
     storyItemStyle: PropTypes.object,
-    storyViewStyle: PropTypes.object
+    storyViewStyle: PropTypes.object,
+    VideoPlayler: PropTypes.node
   };
 
   stories = [];
@@ -95,7 +96,8 @@ export default class Stories extends PureComponent {
       selectedStory,
       footerComponent,
       storyItemStyle,
-      storyViewStyle
+      storyViewStyle,
+      VideoPlayler
     } = this.props;
 
     return (
@@ -125,6 +127,7 @@ export default class Stories extends PureComponent {
                 handleSelectedStoryOnLoaded={this._handleSelectedStoryOnLoaded}
                 selectedStory={selectedStory}
                 storyItemStyle={storyItemStyle}
+                VideoPlayler={VideoPlayler}
                 {...{ story }}
               />
             </Animated.View>
