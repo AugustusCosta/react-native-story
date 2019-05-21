@@ -24,24 +24,28 @@ Inside your component's render method, use Story:
 const stories = [
   {
     id: "4",
+    type: "IMAGE",
     source: require("../../../assets/stories/4.jpg"),
     user: "Ugur Erdal",
     avatar: require("../../../assets/avatars/ugurerdal.png")
   },
   {
     id: "2",
+    type: "IMAGE",
     source: require("../../../assets/stories/2.jpg"),
     user: "Mustafa",
     avatar: require("../../../assets/avatars/mustafa.png")
   },
   {
     id: "5",
+    type: "IMAGE",
     source: require("../../../assets/stories/5.jpg"),
     user: "Emre Yilmaz",
     avatar: require("../../../assets/avatars/emre.png")
   },
   {
     id: "3",
+    type: "VIDEO",
     source: require("../../../assets/stories/3.jpg"),
     user: "Cenk Gun",
     avatar: require("../../../assets/avatars/cenk.png")
@@ -75,7 +79,14 @@ const stories = [
 | unPressedBorderColor | string | true     | "#e95950"                    | Unpressed Border color                 |
 | pressedBorderColor   | string | true     | "#ebebeb"                    | Pressed border color                   |
 | footerComponent      | jsx    | true     | -                            | Bottom of the stories footer component |
-| storyItemStyle       | object | true     | {
+| storyItemStyle       | object | true     | {}                           | Style for StoryItem                    |
+| storyListItemStyle   | object | true     | {}                           | Style for StoryListItem                |
+| storyViewStyle       | object | true     | {},                          | Style for Story View                   |
+| storyListViewStyle   | object | true     | {},                          | Style for Story List View Container    |
+| keyExtractor         | func   | true     | (item, index) => item.id,    | Key Extractor for FlatList             |
+| VideoPlayer          | node   | true     | <View/>                      | Component to play videos               |
+
+storyItemStyle: {
   container: {},
   image: {},
   video: {},
@@ -85,15 +96,13 @@ const stories = [
     username: {}
   },
   footer: {}
-}                                                                         | Style for StoryItem                    |
-| storyListItemStyle   | object | true     | {
+} 
+
+storyListItemStyle: {
   container: {},
   avatarWrapper: {},
   avatar: {},
   itemText: {}
-}                                                                         | Style for StoryListItem                |
-| storyViewStyle       | object | true     | {},                          | Style for Story View                   |
-| storyListViewStyle   | object | true     | {},                          | Style for Story List View Container    |
-| keyExtractor         | func   | true     | (item, index) => item.id,    | Key Extractor for FlatList             |
+} 
 
 **MIT Licensed UE**
