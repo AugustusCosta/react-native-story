@@ -106,6 +106,8 @@ export default class Stories extends PureComponent {
           <View
             style={{
               flex: 1,
+              width: "100%",
+              height: "100%",
               zIndex: 9999,
               justifyContent: "center",
               alignItems: "center",
