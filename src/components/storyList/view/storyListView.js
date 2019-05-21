@@ -36,7 +36,7 @@ class StoryListView extends Component {
     } = this.props;
 
     return (
-      <View style={{ ...styles.container, ...storyListViewStyle }}>
+      <View style={[styles.container, storyListViewStyle]}>
         <FlatList
           data={stories}
           keyExtractor={keyExtractor}

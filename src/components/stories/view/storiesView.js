@@ -101,7 +101,7 @@ export default class Stories extends PureComponent {
     } = this.props;
 
     return (
-      <View style={{ ...styles.container, ...storyViewStyle }}>
+      <View style={[styles.container, storyViewStyle]}>
         {!ready && (
           <View
             style={{

@@ -10,17 +10,13 @@ export default class Avatar extends React.PureComponent {
     const { user, avatar: source, storyItemStyle } = this.props;
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <View
-          style={{ ...styles.container, ...storyItemStyle.avatar.container }}
-        >
+        <View style={[styles.container, storyItemStyle.avatar.container]}>
           <Image
             source={source}
             defaultSource={DEFAULT_AVATAR}
-            style={{ ...styles.avatar, ...storyItemStyle.avatar.avatar }}
+            style={[styles.avatar, storyItemStyle.avatar.avatar]}
           />
-          <Text
-            style={{ ...styles.username, ...storyItemStyle.avatar.username }}
-          >
+          <Text style={[styles.username, storyItemStyle.avatar.username]}>
             {user}
           </Text>
         </View>

@@ -42,12 +42,12 @@ class StoryListItemView extends Component {
     const { isPressed } = this.state;
 
     return (
-      <View style={{ ...styles.container, ...storyListItemStyle.container }}>
+      <View style={[styles.container, storyListItemStyle.container]}>
         <TouchableOpacity
           onPress={() => this._handleItemPress(item)}
           style={[
             styles.avatarWrapper,
-            ...storyListItemStyle.avatarWrapper,
+            storyListItemStyle.avatarWrapper,
             !isPressed
               ? {
                   borderColor: unPressedBorderColor
@@ -62,12 +62,12 @@ class StoryListItemView extends Component {
           ]}
         >
           <Image
-            style={{ ...styles.avatar, ...storyListItemStyle.avatar }}
+            style={[styles.avatar, storyListItemStyle.avatar]}
             source={item.avatar}
             defaultSource={DEFAULT_AVATAR}
           />
         </TouchableOpacity>
-        <Text style={{ ...styles.itemText, ...storyListItemStyle.itemText }}>
+        <Text style={[styles.itemText, storyListItemStyle.itemText]}>
           {item.user}
         </Text>
       </View>

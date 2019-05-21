@@ -23,11 +23,11 @@ export default class extends PureComponent {
     } = this.props;
     return (
       <Fragment>
-        <View style={{ ...styles.container, ...storyItemStyle.container }}>
+        <View style={[styles.container, storyItemStyle.container]}>
           {type === "VIDEO" ? (
             <VideoPlayler
               source={source}
-              style={{ ...styles.video, ...storyItemStyle.video }}
+              style={[styles.video, storyItemStyle.video]}
               onLoad={() =>
                 selectedStory &&
                 selectedStory.id === id &&
@@ -41,14 +41,14 @@ export default class extends PureComponent {
                 selectedStory.id === id &&
                 handleSelectedStoryOnLoaded()
               }
-              style={{ ...styles.image, ...storyItemStyle.image }}
+              style={[styles.image, storyItemStyle.image]}
               {...{ source }}
             />
           )}
           <Avatar {...{ user, avatar, storyItemStyle }} />
         </View>
         {footerComponent && (
-          <View style={{ ...styles.footer, ...storyItemStyle.footer }}>
+          <View style={[styles.footer, storyItemStyle.footer]}>
             {footerComponent}
           </View>
         )}
