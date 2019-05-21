@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, TouchableOpacity, Text } from "react-native";
-
+import PropTypes from "prop-types";
 // Constants
 import DEFAULT_AVATAR from "../../../assets/avatars/no_avatar.png";
 
@@ -8,6 +8,12 @@ import DEFAULT_AVATAR from "../../../assets/avatars/no_avatar.png";
 import styles from "./storyListItemStyles";
 
 class StoryListItemView extends Component {
+  static propTypes = {
+    unPressedBorderColor: PropTypes.string,
+    pressedBorderColor: PropTypes.string,
+    storyListItemStyle: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,15 +33,21 @@ class StoryListItemView extends Component {
   };
 
   render() {
-    const { item, unPressedBorderColor, pressedBorderColor } = this.props;
+    const {
+      item,
+      unPressedBorderColor,
+      pressedBorderColor,
+      storyListItemStyle
+    } = this.props;
     const { isPressed } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={{ ...styles.container, ...storyListItemStyle.container }}>
         <TouchableOpacity
           onPress={() => this._handleItemPress(item)}
           style={[
             styles.avatarWrapper,
+            ...storyListItemStyle.avatarWrapper,
             !isPressed
               ? {
                   borderColor: unPressedBorderColor
@@ -50,12 +62,14 @@ class StoryListItemView extends Component {
           ]}
         >
           <Image
-            style={styles.avatar}
+            style={{ ...styles.avatar, ...storyListItemStyle.avatar }}
             source={item.avatar}
             defaultSource={DEFAULT_AVATAR}
           />
         </TouchableOpacity>
-        <Text style={styles.itemText}>{item.user}</Text>
+        <Text style={{ ...styles.itemText, ...storyListItemStyle.itemText }}>
+          {item.user}
+        </Text>
       </View>
     );
   }

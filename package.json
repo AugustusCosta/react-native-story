@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ue/react-native-story"
+    "url": "git+https://github.com/AugustusCosta/react-native-story"
   },
   "keywords": [
     "react-native",
@@ -22,12 +22,12 @@
     "story",
     "snapchat"
   ],
-  "author": "Ugur ERDAL",
+  "author": "Augustus Costa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.comue/react-native-story/issues"
+    "url": "https://github.com/AugustusCosta/react-native-story/issues"
   },
-  "homepage": "https://github.com/ue/react-native-story",
+  "homepage": "https://github.com/AugustusCosta/react-native-story",
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
@@ -59,10 +59,13 @@
     "lint-staged": "^4.0.0",
     "mocha": "^5.2.0",
     "prettier-eslint-cli": "^4.1.1",
-    "prop-types": "^15.5.10",
     "react-dom": "^15.5.4",
     "react-native-mock": "^0.3.1",
     "semantic-release": "^15.13.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react-native-modalbox": "^1.7.1"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -74,7 +77,7 @@
       "git add"
     ]
   },
-  "version": "0.1.2",
+  "version": "0.1.4",
   "directories": {
     "test": "tests"
   }

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import { View } from "react-native";
 import Modal from "react-native-modalbox";
 
@@ -8,6 +9,43 @@ import { StoryList, Stories } from "../../../components";
 import styles from "./storyStyles";
 
 class StoryListView extends Component {
+  static propTypes = {
+    stories: PropTypes.array,
+    unPressedBorderColor: PropTypes.string,
+    pressedBorderColor: PropTypes.string,
+    storyItemStyle: PropTypes.object,
+    storyListItemStyle: PropTypes.object,
+    storyViewStyle: PropTypes.object,
+    storyListViewStyle: PropTypes.object,
+    keyExtractor: PropTypes.func
+  };
+
+  static defaultProps = {
+    stories: [],
+    unPressedBorderColor: "#0CE5A5",
+    pressedBorderColor: "#D2D5DB",
+    storyItemStyle: {
+      container: {},
+      image: {},
+      video: {},
+      avatar: {
+        container: {},
+        avatar: {},
+        username: {}
+      },
+      footer: {}
+    },
+    storyListItemStyle: {
+      container: {},
+      avatarWrapper: {},
+      avatar: {},
+      itemText: {}
+    },
+    storyViewStyle: {},
+    storyListViewStyle: {},
+    keyExtractor: (item, index) => item.id
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +79,12 @@ class StoryListView extends Component {
       stories,
       footerComponent,
       unPressedBorderColor,
-      pressedBorderColor
+      pressedBorderColor,
+      storyItemStyle,
+      storyListItemStyle,
+      storyViewStyle,
+      storyListViewStyle,
+      keyExtractor
     } = this.props;
     const { isModalOpen, orderedStories, selectedStory } = this.state;
 
@@ -53,6 +96,9 @@ class StoryListView extends Component {
             stories={stories}
             unPressedBorderColor={unPressedBorderColor}
             pressedBorderColor={pressedBorderColor}
+            storyListItemStyle={storyListItemStyle}
+            storyListViewStyle={storyListViewStyle}
+            keyExtractor={keyExtractor}
           />
         </View>
         <Modal
@@ -68,6 +114,8 @@ class StoryListView extends Component {
             footerComponent={footerComponent}
             selectedStory={selectedStory}
             stories={orderedStories}
+            storyItemStyle={storyItemStyle}
+            storyViewStyle={storyViewStyle}
           />
         </Modal>
       </Fragment>

@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import { View, FlatList } from "react-native";
+import PropTypes from "prop-types";
 // Components
 import { StoryListItem } from "../../../components";
 import styles from "./storyListStyles";
 
 class StoryListView extends Component {
+  static propTypes = {
+    stories: PropTypes.array,
+    unPressedBorderColor: PropTypes.string,
+    pressedBorderColor: PropTypes.string,
+    storyListItemStyle: PropTypes.object,
+    storyListViewStyle: PropTypes.object,
+    keyExtractor: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,13 +29,17 @@ class StoryListView extends Component {
       stories,
       handleStoryItemPress,
       unPressedBorderColor,
-      pressedBorderColor
+      pressedBorderColor,
+      storyListItemStyle,
+      storyListViewStyle,
+      keyExtractor
     } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View style={{ ...styles.container, ...storyListViewStyle }}>
         <FlatList
           data={stories}
+          keyExtractor={keyExtractor}
           horizontal
           renderItem={({ item, index }) => (
             <StoryListItem
@@ -34,6 +48,7 @@ class StoryListView extends Component {
               }
               unPressedBorderColor={unPressedBorderColor}
               pressedBorderColor={pressedBorderColor}
+              storyListItemStyle={storyListItemStyle}
               item={item}
             />
           )}

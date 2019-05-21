@@ -7,6 +7,7 @@ import {
   View,
   ActivityIndicator
 } from "react-native";
+import PropTypes from "prop-types";
 import styles from "./storiesStyles";
 import { StoryItem } from "../../";
 
@@ -16,6 +17,12 @@ const angle = Math.atan(perspective / (width / 2));
 const ratio = Platform.OS === "ios" ? 2 : 1.2;
 
 export default class Stories extends PureComponent {
+  static propTypes = {
+    stories: PropTypes.array,
+    storyItemStyle: PropTypes.object,
+    storyViewStyle: PropTypes.object
+  };
+
   stories = [];
 
   state = {
@@ -83,10 +90,16 @@ export default class Stories extends PureComponent {
 
   render() {
     const { x, ready } = this.state;
-    const { stories, selectedStory, footerComponent } = this.props;
+    const {
+      stories,
+      selectedStory,
+      footerComponent,
+      storyItemStyle,
+      storyViewStyle
+    } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View style={{ ...styles.container, ...storyViewStyle }}>
         {!ready && (
           <View
             style={{
@@ -111,6 +124,7 @@ export default class Stories extends PureComponent {
                 footerComponent={footerComponent}
                 handleSelectedStoryOnLoaded={this._handleSelectedStoryOnLoaded}
                 selectedStory={selectedStory}
+                storyItemStyle={storyItemStyle}
                 {...{ story }}
               />
             </Animated.View>

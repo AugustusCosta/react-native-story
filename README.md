@@ -1,8 +1,8 @@
 # react-native-story
 
-A react native component instagram stories
+A react native component instagram stories forked and modified from: https://github.com/ue/react-native-story
 
-[![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/ue/react-native-story/master/LICENSE)
+[![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/AugustusCosta/react-native-story/master/LICENSE)
 [ ![NPM version](http://img.shields.io/npm/v/react-native-story.svg?style=flat)](https://www.npmjs.com/package/react-native-story)
 
 ## Installation
@@ -68,12 +68,32 @@ const stories = [
 
 ## API
 
-| Props                | Type   | Optional | Default   | Description                            |
-| -------------------- | ------ | -------- | --------- | -------------------------------------- |
-| id                   | string | required | -         | Json story data must have this         |
-| stories              | object | required | -         | As above example        |
-| unPressedBorderColor | string | true     | "#e95950" | Unpressed Border color                 |
-| pressedBorderColor   | string | true     | "#ebebeb" | Pressed border color                   |
-| footerComponent      | jsx    | true     | -         | Bottom of the stories footer component |
+| Props                | Type   | Optional | Default                      | Description                            |
+| -------------------- | ------ | -------- | ---------------------------- | -------------------------------------- |
+| id                   | string | required | -                            | Json story data must have this         |
+| stories              | object | required | -                            | As above example                       |
+| unPressedBorderColor | string | true     | "#e95950"                    | Unpressed Border color                 |
+| pressedBorderColor   | string | true     | "#ebebeb"                    | Pressed border color                   |
+| footerComponent      | jsx    | true     | -                            | Bottom of the stories footer component |
+| storyItemStyle       | object | true     | {
+                                                container: {},
+                                                image: {},
+                                                video: {},
+                                                avatar: {
+                                                  container: {},
+                                                  avatar: {},
+                                                  username: {}
+                                                },
+                                                footer: {}
+                                              }                           | Style for StoryItem                    |
+| storyListItemStyle   | object | true     | {
+                                                container: {},
+                                                avatarWrapper: {},
+                                                avatar: {},
+                                                itemText: {}
+                                              }                           | Style for StoryListItem                |
+| storyViewStyle       | object | true     | {},                          | Style for Story View                   |
+| storyListViewStyle   | object | true     | {},                          | Style for Story List View Container    |
+| keyExtractor         | func   | true     | (item, index) => item.id,    | Key Extractor for FlatList             |
 
 **MIT Licensed UE**
