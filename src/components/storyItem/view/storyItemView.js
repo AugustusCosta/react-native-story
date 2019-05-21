@@ -9,7 +9,7 @@ import Avatar from "../../avatar/view/avatarView";
 export default class extends PureComponent {
   static propTypes = {
     storyItemStyle: PropTypes.object,
-    VideoPlayler: PropTypes.node
+    VideoPlayer: PropTypes.node
   };
 
   render() {
@@ -19,13 +19,13 @@ export default class extends PureComponent {
       handleSelectedStoryOnLoaded,
       footerComponent,
       storyItemStyle,
-      VideoPlayler
+      VideoPlayer
     } = this.props;
     return (
       <Fragment>
         <View style={[styles.container, storyItemStyle.container]}>
           {type === "VIDEO" ? (
-            <VideoPlayler
+            <VideoPlayer
               source={source}
               style={[styles.video, storyItemStyle.video]}
               onLoad={() =>
