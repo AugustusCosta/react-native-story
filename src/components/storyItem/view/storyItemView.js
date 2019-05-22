@@ -1,6 +1,6 @@
 // @flow
 import React, { Fragment, PureComponent } from "react";
-import { View, Image, ActivityIndicator } from "react-native";
+import { View, Image } from "react-native";
 import PropTypes from "prop-types";
 import styles from "./storyItemStyles";
 
@@ -24,21 +24,7 @@ export default class extends PureComponent {
     return (
       <Fragment>
         <View style={[styles.container, storyItemStyle.container]}>
-          {selectedStory && selectedStory.id === id ? (
-            <View
-              style={{
-                flex: 1,
-                width: "100%",
-                height: "100%",
-                zIndex: 9999,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "white"
-              }}
-            >
-              <ActivityIndicator size="large" color="gray" />
-            </View>
-          ) : type === "VIDEO" ? (
+          {type === "VIDEO" ? (
             <VideoPlayer
               source={source}
               style={[styles.video, storyItemStyle.video]}
