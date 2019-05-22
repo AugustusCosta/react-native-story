@@ -40,7 +40,9 @@ class StoryListView extends Component {
       avatar: {},
       itemText: {}
     },
-    storyViewStyle: {},
+    storyViewStyle: {
+      container: {}
+    },
     storyListViewStyle: {},
     keyExtractor: (item, index) => item.id,
     VideoPlayer: <View />
