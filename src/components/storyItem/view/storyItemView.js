@@ -14,7 +14,7 @@ export default class extends PureComponent {
 
   render() {
     const {
-      story: { source, user, avatar, id, type },
+      story: { source, user, avatar, id, type, loadImage },
       selectedStory,
       handleSelectedStoryOnLoaded,
       footerComponent,
@@ -24,9 +24,16 @@ export default class extends PureComponent {
     return (
       <Fragment>
         <View style={[styles.container, storyItemStyle.container]}>
+          {type === "VIDEO" && (
+            <Image
+              style={[styles.loadImage, storyItemStyle.loadImage]}
+              source={loadImage}
+            />
+          )}
           {type === "VIDEO" ? (
             <VideoPlayer
-              source={source}
+              key={selectedStory.id}
+              source={selectedStory && selectedStory.id === id ? source : null}
               style={[styles.video, storyItemStyle.video]}
               onLoad={() =>
                 selectedStory &&

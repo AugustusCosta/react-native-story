@@ -19,8 +19,10 @@ const ratio = Platform.OS === "ios" ? 2 : 1.2;
 export default class Stories extends PureComponent {
   static propTypes = {
     stories: PropTypes.array,
+    originalStories: PropTypes.array,
     storyItemStyle: PropTypes.object,
     storyViewStyle: PropTypes.object,
+    selectedStoryChange: PropTypes.func,
     VideoPlayer: PropTypes.any
   };
 
@@ -38,6 +40,7 @@ export default class Stories extends PureComponent {
 
   async componentDidMount() {
     const { x } = this.state;
+    // const { selectedIndex } = this.props;
     await x.addListener(() =>
       this.stories.forEach((story, index) => {
         const offset = index * width;
@@ -79,14 +82,31 @@ export default class Stories extends PureComponent {
         story.current.setNativeProps({ style });
       })
     );
+    // this.scroll.getNode().scrollTo({
+    //   x: selectedIndex * width,
+    //   animated: false
+    // });
   }
 
   _handleSelectedStoryOnLoaded = () => {
     this.setState({ ready: true });
   };
 
-  _handleSwipeLeftRight = () => {
-    alert("swipe");
+  _handleMomentumScrollEnd = ({ nativeEvent }) => {
+    const { originalStories, selectedStoryChange } = this.props;
+
+    if (!originalStories || !originalStories.length) return;
+
+    const contentOffset = nativeEvent.contentOffset;
+    const layoutMeasurement = nativeEvent.layoutMeasurement;
+
+    const itemWidth = layoutMeasurement.width;
+    const x = contentOffset.x;
+
+    let index = x / itemWidth;
+    let story = originalStories[index];
+
+    selectedStoryChange && selectedStoryChange(story, index);
   };
 
   render() {
@@ -111,7 +131,7 @@ export default class Stories extends PureComponent {
               zIndex: 9999,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "white"
+              backgroundColor: "transparent"
             }}
           >
             <ActivityIndicator size="large" color="gray" />
@@ -136,12 +156,14 @@ export default class Stories extends PureComponent {
           ))
           .reverse()}
         <Animated.ScrollView
-          ref={this.scroll}
+          ref={c => (this.scroll = c)}
+          // ref={this.scroll}
           style={StyleSheet.absoluteFillObject}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           snapToInterval={width}
           contentContainerStyle={{ width: width * stories.length }}
+          onMomentumScrollEnd={this._handleMomentumScrollEnd}
           onScroll={Animated.event(
             [
               {

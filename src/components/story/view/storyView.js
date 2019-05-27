@@ -29,6 +29,7 @@ class StoryListView extends Component {
       container: {},
       image: {},
       video: {},
+      loadImage: {},
       avatarContainer: {},
       avatar: {},
       username: {},
@@ -53,7 +54,8 @@ class StoryListView extends Component {
     this.state = {
       isModalOpen: false,
       orderedStories: null,
-      selectedStory: null
+      selectedStory: null,
+      selectedIndex: 0
     };
   }
 
@@ -63,17 +65,23 @@ class StoryListView extends Component {
   _handleStoryItemPress = (item, index) => {
     const { stories } = this.props;
 
-    this.setState({ selectedStory: item });
-
     const _stories = Array.from(stories);
 
     const rest = _stories.splice(index);
     const first = _stories;
 
     const orderedStories = rest.concat(first);
+    this.setState({
+      orderedStories,
+      selectedStory: item,
+      isModalOpen: true,
+      selectedIndex: index
+    });
+    this.forceUpdate();
+  };
 
-    this.setState({ orderedStories });
-    this.setState({ isModalOpen: true });
+  _handleSelectedStoryChange = (item, index) => {
+    this._handleStoryItemPress(item, index);
   };
 
   render() {
@@ -89,7 +97,12 @@ class StoryListView extends Component {
       keyExtractor,
       VideoPlayer
     } = this.props;
-    const { isModalOpen, orderedStories, selectedStory } = this.state;
+    const {
+      isModalOpen,
+      orderedStories,
+      selectedStory,
+      selectedIndex
+    } = this.state;
 
     return (
       <Fragment>
@@ -116,10 +129,13 @@ class StoryListView extends Component {
           <Stories
             footerComponent={footerComponent}
             selectedStory={selectedStory}
+            selectedIndex={selectedIndex}
             stories={orderedStories}
+            originalStories={stories}
             storyItemStyle={storyItemStyle}
             storyViewStyle={storyViewStyle}
             VideoPlayer={VideoPlayer}
+            selectedStoryChange={this._handleSelectedStoryChange}
           />
         </Modal>
       </Fragment>

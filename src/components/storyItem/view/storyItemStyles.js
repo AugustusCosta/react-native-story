@@ -15,6 +15,12 @@ export default StyleSheet.create({
     width: null,
     height: Dimensions.get("window").height
   },
+  loadImage: {
+    position: "absolute",
+    ...StyleSheet.absoluteFillObject,
+    width: null,
+    height: Dimensions.get("window").height
+  },
   footer: {
     flexDirection: "row",
     alignItems: "center",
