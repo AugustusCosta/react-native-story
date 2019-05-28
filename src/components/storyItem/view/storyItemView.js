@@ -23,36 +23,49 @@ export default class extends PureComponent {
     } = this.props;
     return (
       <Fragment>
-        <View style={[styles.container, storyItemStyle.container]}>
+        <View
+          // key={selectedStory.id}
+          style={[styles.container, storyItemStyle.container]}
+        >
           {type === "VIDEO" && (
             <Image
               style={[styles.loadImage, storyItemStyle.loadImage]}
               source={loadImage}
             />
           )}
-          {type === "VIDEO" ? (
-            <VideoPlayer
-              key={selectedStory.id}
-              source={selectedStory && selectedStory.id === id ? source : null}
-              style={[styles.video, storyItemStyle.video]}
-              onLoad={() =>
-                selectedStory &&
-                selectedStory.id === id &&
-                handleSelectedStoryOnLoaded()
-              }
-            />
-          ) : (
-            <Image
-              onLoad={() =>
-                selectedStory &&
-                selectedStory.id === id &&
-                handleSelectedStoryOnLoaded()
-              }
-              style={[styles.image, storyItemStyle.image]}
-              {...{ source }}
-            />
-          )}
-          <Avatar {...{ user, avatar, storyItemStyle }} />
+
+          <View
+            // key={selectedStory ? selectedStory.id + id : id}
+            style={[styles.container, storyItemStyle.container]}
+          >
+            {type === "VIDEO" ? (
+              selectedStory && selectedStory.id === id ? (
+                <VideoPlayer
+                  // key={selectedStory.id}
+                  source={
+                    selectedStory && selectedStory.id === id ? source : null
+                  }
+                  style={[styles.video, storyItemStyle.video]}
+                  onLoad={() =>
+                    selectedStory &&
+                    selectedStory.id === id &&
+                    handleSelectedStoryOnLoaded()
+                  }
+                />
+              ) : null
+            ) : (
+              <Image
+                onLoad={() =>
+                  selectedStory &&
+                  selectedStory.id === id &&
+                  handleSelectedStoryOnLoaded()
+                }
+                style={[styles.image, storyItemStyle.image]}
+                {...{ source }}
+              />
+            )}
+            <Avatar {...{ user, avatar, storyItemStyle }} />
+          </View>
         </View>
         {footerComponent && (
           <View style={[styles.footer, storyItemStyle.footer]}>

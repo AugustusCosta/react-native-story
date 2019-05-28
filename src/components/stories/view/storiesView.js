@@ -28,13 +28,12 @@ export default class Stories extends PureComponent {
 
   stories = [];
 
-  state = {
-    x: new Animated.Value(0),
-    ready: false
-  };
-
   constructor(props) {
     super(props);
+    this.state = {
+      x: new Animated.Value(0),
+      ready: false
+    };
     this.stories = props.stories.map(() => React.createRef());
   }
 
@@ -121,7 +120,10 @@ export default class Stories extends PureComponent {
     } = this.props;
 
     return (
-      <View style={[styles.container, storyViewStyle.container]}>
+      <View
+        key={selectedStory ? selectedStory.id : -1}
+        style={[styles.container, storyViewStyle.container]}
+      >
         {!ready && (
           <View
             style={{
@@ -156,8 +158,8 @@ export default class Stories extends PureComponent {
           ))
           .reverse()}
         <Animated.ScrollView
-          ref={c => (this.scroll = c)}
-          // ref={this.scroll}
+          // ref={c => (this.scroll = c)}
+          ref={this.scroll}
           style={StyleSheet.absoluteFillObject}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}

@@ -53,7 +53,7 @@ class StoryListView extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      orderedStories: null,
+      orderedStories: [],
       selectedStory: null,
       selectedIndex: 0
     };
@@ -120,7 +120,13 @@ class StoryListView extends Component {
         <Modal
           style={styles.modal}
           isOpen={isModalOpen}
-          onClosed={() => this.setState({ isModalOpen: false })}
+          onClosed={() =>
+            this.setState({
+              isModalOpen: false,
+              selectedStory: null,
+              orderedStories: []
+            })
+          }
           position="center"
           swipeToClose
           swipeArea={250}
