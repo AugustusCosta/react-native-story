@@ -11,7 +11,8 @@ class StoryListItemView extends Component {
   static propTypes = {
     unPressedBorderColor: PropTypes.string,
     pressedBorderColor: PropTypes.string,
-    storyListItemStyle: PropTypes.object
+    storyListItemStyle: PropTypes.object,
+    CacheImage: PropTypes.any
   };
 
   constructor(props) {
@@ -37,7 +38,8 @@ class StoryListItemView extends Component {
       item,
       unPressedBorderColor,
       pressedBorderColor,
-      storyListItemStyle
+      storyListItemStyle,
+      CacheImage
     } = this.props;
     const { isPressed } = this.state;
 
@@ -61,11 +63,18 @@ class StoryListItemView extends Component {
                 }
           ]}
         >
-          <Image
-            style={[styles.avatar, storyListItemStyle.avatar]}
-            source={item.avatar}
-            defaultSource={DEFAULT_AVATAR}
-          />
+          {CacheImage ? (
+            <CacheImage
+              style={[styles.avatar, storyListItemStyle.avatar]}
+              uri={item.avatar.uri}
+            />
+          ) : (
+            <Image
+              style={[styles.avatar, storyListItemStyle.avatar]}
+              source={item.avatar}
+              defaultSource={DEFAULT_AVATAR}
+            />
+          )}
         </TouchableOpacity>
         <Text style={[styles.itemText, storyListItemStyle.itemText]}>
           {item.user}

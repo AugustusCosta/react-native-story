@@ -12,7 +12,8 @@ class StoryListView extends Component {
     pressedBorderColor: PropTypes.string,
     storyListItemStyle: PropTypes.object,
     storyListViewStyle: PropTypes.object,
-    keyExtractor: PropTypes.func
+    keyExtractor: PropTypes.func,
+    CacheImage: PropTypes.any
   };
 
   constructor(props) {
@@ -32,7 +33,8 @@ class StoryListView extends Component {
       pressedBorderColor,
       storyListItemStyle,
       storyListViewStyle,
-      keyExtractor
+      keyExtractor,
+      CacheImage
     } = this.props;
 
     return (
@@ -50,6 +52,7 @@ class StoryListView extends Component {
               pressedBorderColor={pressedBorderColor}
               storyListItemStyle={storyListItemStyle}
               item={item}
+              CacheImage={CacheImage}
             />
           )}
         />

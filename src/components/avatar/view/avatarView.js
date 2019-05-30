@@ -7,15 +7,23 @@ import DEFAULT_AVATAR from "../../../assets/avatars/no_avatar.png";
 
 export default class Avatar extends React.PureComponent {
   render() {
-    const { user, avatar: source, storyItemStyle } = this.props;
+    const { user, avatar: source, storyItemStyle, CacheImage } = this.props;
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={[styles.container, storyItemStyle.avatarContainer]}>
-          <Image
-            source={source}
-            defaultSource={DEFAULT_AVATAR}
-            style={[styles.avatar, storyItemStyle.avatar]}
-          />
+          {CacheImage ? (
+            <CacheImage
+              style={[styles.avatar, storyItemStyle.avatar]}
+              uri={source.uri}
+            />
+          ) : (
+            <Image
+              source={source}
+              defaultSource={DEFAULT_AVATAR}
+              style={[styles.avatar, storyItemStyle.avatar]}
+            />
+          )}
+
           <Text style={[styles.username, storyItemStyle.username]}>{user}</Text>
         </View>
       </SafeAreaView>

@@ -23,7 +23,8 @@ export default class Stories extends PureComponent {
     storyItemStyle: PropTypes.object,
     storyViewStyle: PropTypes.object,
     selectedStoryChange: PropTypes.func,
-    VideoPlayer: PropTypes.any
+    VideoPlayer: PropTypes.any,
+    CacheImage: PropTypes.any
   };
 
   stories = [];
@@ -39,7 +40,6 @@ export default class Stories extends PureComponent {
 
   async componentDidMount() {
     const { x } = this.state;
-    // const { selectedIndex } = this.props;
     await x.addListener(() =>
       this.stories.forEach((story, index) => {
         const offset = index * width;
@@ -81,10 +81,6 @@ export default class Stories extends PureComponent {
         story.current.setNativeProps({ style });
       })
     );
-    // this.scroll.getNode().scrollTo({
-    //   x: selectedIndex * width,
-    //   animated: false
-    // });
   }
 
   _handleSelectedStoryOnLoaded = () => {
@@ -116,7 +112,8 @@ export default class Stories extends PureComponent {
       footerComponent,
       storyItemStyle,
       storyViewStyle,
-      VideoPlayer
+      VideoPlayer,
+      CacheImage
     } = this.props;
 
     return (
@@ -152,13 +149,13 @@ export default class Stories extends PureComponent {
                 selectedStory={selectedStory}
                 storyItemStyle={storyItemStyle}
                 VideoPlayer={VideoPlayer}
+                CacheImage={CacheImage}
                 {...{ story }}
               />
             </Animated.View>
           ))
           .reverse()}
         <Animated.ScrollView
-          // ref={c => (this.scroll = c)}
           ref={this.scroll}
           style={StyleSheet.absoluteFillObject}
           showsHorizontalScrollIndicator={false}

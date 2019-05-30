@@ -9,7 +9,8 @@ import Avatar from "../../avatar/view/avatarView";
 export default class extends PureComponent {
   static propTypes = {
     storyItemStyle: PropTypes.object,
-    VideoPlayer: PropTypes.any
+    VideoPlayer: PropTypes.any,
+    CacheImage: PropTypes.any
   };
 
   render() {
@@ -19,29 +20,30 @@ export default class extends PureComponent {
       handleSelectedStoryOnLoaded,
       footerComponent,
       storyItemStyle,
-      VideoPlayer
+      VideoPlayer,
+      CacheImage
     } = this.props;
     return (
       <Fragment>
-        <View
-          // key={selectedStory.id}
-          style={[styles.container, storyItemStyle.container]}
-        >
-          {type === "VIDEO" && (
-            <Image
-              style={[styles.loadImage, storyItemStyle.loadImage]}
-              source={loadImage}
-            />
-          )}
+        <View style={[styles.container, storyItemStyle.container]}>
+          {type === "VIDEO" ? (
+            CacheImage ? (
+              <CacheImage
+                style={[styles.loadImage, storyItemStyle.loadImage]}
+                uri={loadImage.uri}
+              />
+            ) : (
+              <Image
+                style={[styles.loadImage, storyItemStyle.loadImage]}
+                source={loadImage}
+              />
+            )
+          ) : null}
 
-          <View
-            // key={selectedStory ? selectedStory.id + id : id}
-            style={[styles.container, storyItemStyle.container]}
-          >
+          <View style={[styles.container, storyItemStyle.container]}>
             {type === "VIDEO" ? (
               selectedStory && selectedStory.id === id ? (
                 <VideoPlayer
-                  // key={selectedStory.id}
                   source={
                     selectedStory && selectedStory.id === id ? source : null
                   }
@@ -53,6 +55,16 @@ export default class extends PureComponent {
                   }
                 />
               ) : null
+            ) : CacheImage ? (
+              <CacheImage
+                onLoad={() =>
+                  selectedStory &&
+                  selectedStory.id === id &&
+                  handleSelectedStoryOnLoaded()
+                }
+                style={[styles.image, storyItemStyle.image]}
+                uri={source.uri}
+              />
             ) : (
               <Image
                 onLoad={() =>
@@ -64,7 +76,7 @@ export default class extends PureComponent {
                 {...{ source }}
               />
             )}
-            <Avatar {...{ user, avatar, storyItemStyle }} />
+            <Avatar {...{ user, avatar, storyItemStyle, CacheImage }} />
           </View>
         </View>
         {footerComponent && (
